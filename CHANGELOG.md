@@ -8,6 +8,10 @@ The format is based on Keep a Changelog, and this project intends to use semanti
 
 ### Added
 
+* Added `MQL5/Include/DrawdownGuard.mqh` for basic daily and total drawdown evaluation using caller-supplied account-value units without order operations.
+* Added `MQL5/Scripts/TestDrawdownGuard.mq5` with deterministic synthetic drawdown guard diagnostics and hard-coded expected results.
+* Documented DrawdownGuard usage, assumptions, failure behavior, and limitations in `README.md` and the Japanese first-time MT5 setup guide.
+
 * Added a Japanese first-time MT5 EA user setup guide for installing, compiling, running, and reading the `LotSafety` diagnostic script without placing, modifying, or closing orders.
 
 * Added GitHub bug report, feature request, and pull request templates to standardize safety and auditability review records.
@@ -25,7 +29,6 @@ The format is based on Keep a Changelog, and this project intends to use semanti
 
 ### Planned
 
-* Basic MQL5 drawdown risk guard.
 * Account-currency handling documentation.
 * JPY/USD backtest conversion guidance.
 * Broker server time, UTC, VPS time, and JST documentation.

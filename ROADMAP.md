@@ -16,7 +16,7 @@ The project focuses on operational safety, transparent assumptions, reproducible
 
 ## Phase 2 — Core safety components
 
-* [ ] Add a basic daily and total drawdown guard.
+* [x] Add a basic daily and total drawdown guard.
 * [x] Add lot-size and order-volume validation.
 * [x] Add symbol minimum, maximum, and volume-step checks.
 * [x] Add conservative failure behavior when required data is unavailable.
