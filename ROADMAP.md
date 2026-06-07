@@ -12,7 +12,7 @@ The project focuses on operational safety, transparent assumptions, reproducible
 * [x] Add repository instructions for coding agents.
 * [x] Add the initial changelog.
 * [x] Add contribution guidelines.
-* [ ] Add Japanese documentation for first-time MT5 EA users.
+* [x] Add Japanese documentation for first-time MT5 EA users.
 
 ## Phase 2 — Core safety components
 

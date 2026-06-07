@@ -63,6 +63,8 @@ Print("Lot validation passed: ", lot_result.reason);
 
 Before live use, users must compile and verify the include file and any calling Expert Advisor in MetaEditor for their MetaTrader 5 build and broker symbols.
 
+For first-time MT5 EA users in Japan, see the Japanese setup guide: [`docs/ja/mt5-first-time-setup.md`](docs/ja/mt5-first-time-setup.md). It explains where to place the existing `LotSafety` include file and diagnostic script, how to compile the script, how to run it on a chart, and how to read the Experts log without placing, modifying, or closing orders.
+
 ### Diagnostic test script
 
 `MQL5/Scripts/TestLotSafety.mq5` uses only the current chart symbol (`_Symbol`) and prints diagnostic results for valid and invalid sample volumes. It displays the symbol minimum, maximum, volume step, requested volume, normalized volume, pass/fail result, and human-readable reason.
