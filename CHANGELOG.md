@@ -8,6 +8,8 @@ The format is based on Keep a Changelog, and this project intends to use semanti
 
 ### Added
 
+* Added a Japanese first-time MT5 EA user setup guide for installing, compiling, running, and reading the `LotSafety` diagnostic script without placing, modifying, or closing orders.
+
 * Added GitHub bug report, feature request, and pull request templates to standardize safety and auditability review records.
 
 * Added independent synthetic lot-normalization diagnostics with hard-coded expected normalized volumes for multiple volume-step specifications.
