@@ -128,18 +128,31 @@ bool LotSafetyGetSymbolSpecs(const string symbol,
    return true;
 }
 
-bool LotSafetyNormalizeVolume(const string symbol,
-                              const double requested_volume,
-                              LotSafetyResult &result)
+void LotSafetyInitializeResult(LotSafetyResult &result,
+                               const string symbol,
+                               const double requested_volume,
+                               const double volume_min = 0.0,
+                               const double volume_max = 0.0,
+                               const double volume_step = 0.0)
 {
    result.ok = false;
    result.symbol = symbol;
    result.requested_volume = requested_volume;
    result.normalized_volume = 0.0;
-   result.volume_min = 0.0;
-   result.volume_max = 0.0;
-   result.volume_step = 0.0;
+   result.volume_min = volume_min;
+   result.volume_max = volume_max;
+   result.volume_step = volume_step;
    result.reason = "Validation has not run.";
+}
+
+bool LotSafetyNormalizeVolumeFromSpecs(const string symbol,
+                                       const double requested_volume,
+                                       const double volume_min,
+                                       const double volume_max,
+                                       const double volume_step,
+                                       LotSafetyResult &result)
+{
+   LotSafetyInitializeResult(result, symbol, requested_volume, volume_min, volume_max, volume_step);
 
    if(!LotSafetyIsFinite(requested_volume))
    {
@@ -153,51 +166,74 @@ bool LotSafetyNormalizeVolume(const string symbol,
       return false;
    }
 
-   string specs_reason = "";
-   if(!LotSafetyGetSymbolSpecs(symbol, result.volume_min, result.volume_max, result.volume_step, specs_reason))
+   if(!LotSafetyIsFinite(volume_min) || !LotSafetyIsFinite(volume_max) || !LotSafetyIsFinite(volume_step))
    {
-      LotSafetySetFailure(result, specs_reason);
+      LotSafetySetFailure(result, "Volume specifications contain a non-finite value; refusing lot size.");
       return false;
    }
 
-   if(requested_volume < result.volume_min - LOT_SAFETY_EPSILON)
+   if(volume_min <= 0.0)
+   {
+      LotSafetySetFailure(result, "Minimum volume must be positive; refusing lot size.");
+      return false;
+   }
+
+   if(volume_max <= 0.0)
+   {
+      LotSafetySetFailure(result, "Maximum volume must be positive; refusing lot size.");
+      return false;
+   }
+
+   if(volume_step <= 0.0)
+   {
+      LotSafetySetFailure(result, "Volume step must be positive; refusing lot size.");
+      return false;
+   }
+
+   if(volume_min > volume_max + LOT_SAFETY_EPSILON)
+   {
+      LotSafetySetFailure(result, "Volume specifications are inconsistent: minimum volume is greater than maximum volume.");
+      return false;
+   }
+
+   if(requested_volume < volume_min - LOT_SAFETY_EPSILON)
    {
       LotSafetySetFailure(result,
                           "Requested volume is below SYMBOL_VOLUME_MIN; refusing to increase lot size silently.");
       return false;
    }
 
-   if(requested_volume > result.volume_max + LOT_SAFETY_EPSILON)
+   if(requested_volume > volume_max + LOT_SAFETY_EPSILON)
    {
       LotSafetySetFailure(result, "Requested volume is above SYMBOL_VOLUME_MAX; refusing lot size.");
       return false;
    }
 
-   double normalized = result.volume_min;
-   const double distance_from_min = requested_volume - result.volume_min;
+   double normalized = volume_min;
+   const double distance_from_min = requested_volume - volume_min;
 
    if(distance_from_min > LOT_SAFETY_EPSILON)
    {
-      const double step_count = MathFloor((distance_from_min / result.volume_step) + LOT_SAFETY_EPSILON);
-      normalized = result.volume_min + (step_count * result.volume_step);
+      const double step_count = MathFloor((distance_from_min / volume_step) + LOT_SAFETY_EPSILON);
+      normalized = volume_min + (step_count * volume_step);
    }
 
-   const int digits = LotSafetyVolumeDigits(result.volume_step);
+   const int digits = LotSafetyVolumeDigits(volume_step);
    normalized = NormalizeDouble(normalized, digits);
 
    // NormalizeDouble can round upward by a tiny amount. If that would increase
    // risk beyond the request outside the explicit tolerance, step down once.
    if(normalized > requested_volume + LOT_SAFETY_EPSILON)
-      normalized = NormalizeDouble(normalized - result.volume_step, digits);
+      normalized = NormalizeDouble(normalized - volume_step, digits);
 
-   if(normalized < result.volume_min - LOT_SAFETY_EPSILON)
+   if(normalized < volume_min - LOT_SAFETY_EPSILON)
    {
       LotSafetySetFailure(result,
                           "Downward normalization would fall below SYMBOL_VOLUME_MIN; refusing lot size.");
       return false;
    }
 
-   if(normalized > result.volume_max + LOT_SAFETY_EPSILON)
+   if(normalized > volume_max + LOT_SAFETY_EPSILON)
    {
       LotSafetySetFailure(result,
                           "Downward normalization produced a value above SYMBOL_VOLUME_MAX; refusing lot size.");
@@ -220,6 +256,40 @@ bool LotSafetyNormalizeVolume(const string symbol,
       result.reason = "Requested volume was normalized downward to the permitted symbol volume step without increasing risk.";
 
    return true;
+}
+
+bool LotSafetyNormalizeVolume(const string symbol,
+                              const double requested_volume,
+                              LotSafetyResult &result)
+{
+   LotSafetyInitializeResult(result, symbol, requested_volume);
+
+   if(!LotSafetyIsFinite(requested_volume))
+   {
+      LotSafetySetFailure(result, "Requested volume is non-finite; refusing to normalize lot size.");
+      return false;
+   }
+
+   if(requested_volume <= 0.0)
+   {
+      LotSafetySetFailure(result, "Requested volume must be greater than zero; refusing zero or negative lot size.");
+      return false;
+   }
+
+   string specs_reason = "";
+
+   if(!LotSafetyGetSymbolSpecs(symbol, result.volume_min, result.volume_max, result.volume_step, specs_reason))
+   {
+      LotSafetySetFailure(result, specs_reason);
+      return false;
+   }
+
+   return LotSafetyNormalizeVolumeFromSpecs(symbol,
+                                           requested_volume,
+                                           result.volume_min,
+                                           result.volume_max,
+                                           result.volume_step,
+                                           result);
 }
 
 #endif // LOT_SAFETY_MQH
