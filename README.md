@@ -78,3 +78,9 @@ To run it:
 3. Compile the script in MetaEditor.
 4. Attach the script to a chart for the symbol you want to inspect.
 5. Review the printed diagnostics in the MetaTrader 5 Toolbox or Experts log.
+
+## Repository templates
+
+This repository includes GitHub issue and pull request templates under `.github/` to keep maintenance records structured and auditable. The bug report and feature request templates ask contributors to identify affected components, relevant MetaTrader 5 environment details, safety impact, verification expectations, and whether any order was placed, modified, or closed. The pull request template asks reviewers to confirm changed files, safety impact, MetaEditor or MT5 verification where applicable, tests not performed, and that no order-management or proprietary strategy logic was added unless explicitly intended and documented.
+
+These templates are maintenance aids only. They do not change MQL5 runtime behavior and do not provide trading signals.
