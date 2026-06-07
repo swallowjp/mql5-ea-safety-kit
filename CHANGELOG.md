@@ -8,6 +8,10 @@ The format is based on Keep a Changelog, and this project intends to use semanti
 
 ### Added
 
+* Added `MQL5/Include/LotSafety.mqh` for symbol-aware lot validation and conservative downward volume-step normalization.
+* Added `MQL5/Scripts/TestLotSafety.mq5` to print current-chart-symbol lot-safety boundary diagnostics without placing orders.
+* Documented lot-safety usage, assumptions, and MetaEditor verification requirements in `README.md`.
+
 * Initial public repository structure.
 * Project overview and safety objectives in `README.md`.
 * MIT License.
@@ -16,7 +20,6 @@ The format is based on Keep a Changelog, and this project intends to use semanti
 ### Planned
 
 * Basic MQL5 drawdown risk guard.
-* Lot-size and order-volume validation.
 * Account-currency handling documentation.
 * JPY/USD backtest conversion guidance.
 * Broker server time, UTC, VPS time, and JST documentation.

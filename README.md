@@ -19,3 +19,60 @@ Many EA failures are not caused by entry logic, but by operational mistakes:
 - missing live-trading checklist
 
 This repository provides auditable MQL5 components, documentation, and checklists to reduce those errors.
+
+## MQL5 components
+
+### Symbol-aware lot safety
+
+`MQL5/Include/LotSafety.mqh` validates and normalizes a requested order volume for a requested symbol before any Expert Advisor submits an order. It is a safety-only module and contains no entry signal, exit signal, order placement, order modification, or order-closing logic.
+
+The module reads these MetaTrader 5 symbol properties for the requested symbol:
+
+- `SYMBOL_VOLUME_MIN`
+- `SYMBOL_VOLUME_MAX`
+- `SYMBOL_VOLUME_STEP`
+
+It fails closed when symbol volume specifications are unavailable, zero, negative, non-finite, or internally inconsistent. It rejects requested volumes that are zero, negative, non-finite, below the symbol minimum, or above the symbol maximum.
+
+For an otherwise valid in-range requested volume, the module normalizes downward to the permitted `SYMBOL_VOLUME_STEP` increment anchored at `SYMBOL_VOLUME_MIN`. It never intentionally rounds upward, so it does not silently increase requested volume or trading risk.
+
+Rounding and unit assumptions:
+
+- Unit: lots for the requested trading symbol.
+- Account currency: not used; no currency conversion is performed.
+- Balance, equity, margin, and free margin: not used by this module.
+- Time basis: not used by this module.
+- Rounding method: downward step normalization using `SYMBOL_VOLUME_MIN` as the anchor and `SYMBOL_VOLUME_STEP` as the increment.
+- Floating-point tolerance: `LOT_SAFETY_EPSILON` is explicitly defined in the include file to handle insignificant binary floating-point representation noise.
+
+Basic usage inside an Expert Advisor or script:
+
+```mql5
+#include <LotSafety.mqh>
+
+LotSafetyResult lot_result;
+if(!LotSafetyNormalizeVolume(_Symbol, requested_lots, lot_result))
+{
+   Print("Lot validation failed: ", lot_result.reason);
+   return;
+}
+
+const double safe_lots = lot_result.normalized_volume;
+Print("Lot validation passed: ", lot_result.reason);
+```
+
+Before live use, users must compile and verify the include file and any calling Expert Advisor in MetaEditor for their MetaTrader 5 build and broker symbols.
+
+### Diagnostic test script
+
+`MQL5/Scripts/TestLotSafety.mq5` uses only the current chart symbol (`_Symbol`) and prints diagnostic results for valid and invalid sample volumes. It displays the symbol minimum, maximum, volume step, requested volume, normalized volume, pass/fail result, and human-readable reason.
+
+The script tests boundary cases around zero, negative volume, the minimum volume, fractional volume-step requests, one-step requests, the maximum volume, and above-maximum requests. It does not place, modify, or close any real or simulated orders.
+
+To run it:
+
+1. Copy or keep `MQL5/Include/LotSafety.mqh` under the terminal's `MQL5/Include` directory.
+2. Copy or keep `MQL5/Scripts/TestLotSafety.mq5` under the terminal's `MQL5/Scripts` directory.
+3. Compile the script in MetaEditor.
+4. Attach the script to a chart for the symbol you want to inspect.
+5. Review the printed diagnostics in the MetaTrader 5 Toolbox or Experts log.
