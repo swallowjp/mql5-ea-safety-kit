@@ -67,7 +67,9 @@ Before live use, users must compile and verify the include file and any calling 
 
 `MQL5/Scripts/TestLotSafety.mq5` uses only the current chart symbol (`_Symbol`) and prints diagnostic results for valid and invalid sample volumes. It displays the symbol minimum, maximum, volume step, requested volume, normalized volume, pass/fail result, and human-readable reason.
 
-The script tests boundary cases around zero, negative volume, the minimum volume, fractional volume-step requests, one-step requests, the maximum volume, and above-maximum requests. It does not place, modify, or close any real or simulated orders.
+The script tests boundary cases around zero, negative volume, the minimum volume, fractional volume-step requests, one-step requests, the maximum volume, and above-maximum requests. It also runs independent synthetic tests against the pure lot-normalization function using explicit hard-coded expected normalized volumes for `0.01`, `0.10`, `0.25`, and `0.001` volume steps; exact-minimum, between-step, exact-maximum, below-minimum, above-maximum, zero-step, negative-step, and minimum-greater-than-maximum cases are included. The synthetic expected values are constants in the script, not values calculated by the production normalization algorithm.
+
+The script does not place, modify, or close any real or simulated orders.
 
 To run it:
 

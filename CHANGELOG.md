@@ -8,6 +8,8 @@ The format is based on Keep a Changelog, and this project intends to use semanti
 
 ### Added
 
+* Added independent synthetic lot-normalization diagnostics with hard-coded expected normalized volumes for multiple volume-step specifications.
+
 * Added `MQL5/Include/LotSafety.mqh` for symbol-aware lot validation and conservative downward volume-step normalization.
 * Added `MQL5/Scripts/TestLotSafety.mq5` to print current-chart-symbol lot-safety boundary diagnostics without placing orders.
 * Documented lot-safety usage, assumptions, and MetaEditor verification requirements in `README.md`.

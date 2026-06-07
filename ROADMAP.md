@@ -11,15 +11,15 @@ The project focuses on operational safety, transparent assumptions, reproducible
 * [x] Add the MIT License.
 * [x] Add repository instructions for coding agents.
 * [x] Add the initial changelog.
-* [ ] Add contribution guidelines.
+* [x] Add contribution guidelines.
 * [ ] Add Japanese documentation for first-time MT5 EA users.
 
 ## Phase 2 — Core safety components
 
 * [ ] Add a basic daily and total drawdown guard.
-* [ ] Add lot-size and order-volume validation.
-* [ ] Add symbol minimum, maximum, and volume-step checks.
-* [ ] Add conservative failure behavior when required data is unavailable.
+* [x] Add lot-size and order-volume validation.
+* [x] Add symbol minimum, maximum, and volume-step checks.
+* [x] Add conservative failure behavior when required data is unavailable.
 * [ ] Add example usage in a safety-only Expert Advisor.
 
 ## Phase 3 — Currency and time handling
