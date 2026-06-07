@@ -2,8 +2,11 @@
 
 Open-source safety, risk-guard, and audit toolkit for MQL5/MT5 Expert Advisors.
 
-This project is not a profitable trading strategy and does not provide financial advice.
-It provides reusable safety components and operational checklists for traders who build or run MT5 Expert Advisors, especially under strict drawdown rules such as prop-firm evaluations.
+This repository provides reusable MQL5/MT5 safety and audit helpers for safer Expert Advisor (EA) development, review, and operational-checklist workflows. It is not a trading strategy, does not provide financial advice, and does not include entry signals, exit signals, order placement, order modification, or order-closing logic.
+
+The diagnostic scripts are designed for deterministic safety checks and log output only. They do not place, modify, or close real or simulated orders.
+
+For the first public release package, see [`RELEASE_NOTES.md`](RELEASE_NOTES.md).
 
 ## Why this project exists
 
