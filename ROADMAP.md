@@ -41,8 +41,8 @@ The project focuses on operational safety, transparent assumptions, reproducible
 ## Phase 5 — Community and maintenance
 
 * [ ] Publish the first tagged release.
-* [ ] Add issue templates.
-* [ ] Add pull request templates.
+* [x] Add issue templates.
+* [x] Add pull request templates.
 * [ ] Collect feedback from MQL5 and MT5 users.
 * [ ] Improve English and Japanese documentation.
 * [ ] Maintain a public changelog for user-visible changes.

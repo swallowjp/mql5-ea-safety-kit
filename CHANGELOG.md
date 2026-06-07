@@ -8,6 +8,8 @@ The format is based on Keep a Changelog, and this project intends to use semanti
 
 ### Added
 
+* Added GitHub bug report, feature request, and pull request templates to standardize safety and auditability review records.
+
 * Added independent synthetic lot-normalization diagnostics with hard-coded expected normalized volumes for multiple volume-step specifications.
 
 * Added `MQL5/Include/LotSafety.mqh` for symbol-aware lot validation and conservative downward volume-step normalization.
