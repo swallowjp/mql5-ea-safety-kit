@@ -8,6 +8,11 @@ The diagnostic scripts are designed for deterministic safety checks and log outp
 
 For the first public release package, see [`RELEASE_NOTES.md`](RELEASE_NOTES.md).
 
+Maintenance and reporting documents:
+
+- [`docs/maintenance-with-codex.md`](docs/maintenance-with-codex.md) documents the issue-driven Codex-assisted maintenance workflow, human pull request review, manual MetaEditor and MetaTrader 5 verification boundaries, documentation-only review, and release management.
+- [`SECURITY.md`](SECURITY.md) explains how to report safety or security concerns without exposing account credentials, broker login data, API keys, personal information, proprietary EA code, or private trading logs.
+
 ## Why this project exists
 
 Many EA failures are not caused by entry logic, but by operational mistakes:
