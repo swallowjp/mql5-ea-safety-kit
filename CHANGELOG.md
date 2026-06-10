@@ -6,7 +6,15 @@ The format is based on Keep a Changelog, and this project intends to use semanti
 
 ## [Unreleased]
 
-No unreleased changes yet.
+### Added
+
+* Added `docs/maintenance-with-codex.md` to document the real issue-driven Codex-assisted maintenance workflow, including issue definition, Codex implementation, pull request review, MetaEditor compilation, MetaTrader 5 runtime verification, documentation-only review, and merge/release management.
+* Added `SECURITY.md` with supported-version scope, safety/security reporting guidance, sensitive-information handling, and small volunteer-maintainer limitations.
+* Linked the maintenance workflow and security policy from `README.md`.
+
+### Changed
+
+* Marked maintenance workflow documentation complete in `ROADMAP.md`.
 
 ## [0.1.0] - 2026-06-07
 

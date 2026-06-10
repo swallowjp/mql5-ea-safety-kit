@@ -36,6 +36,7 @@ The project focuses on operational safety, transparent assumptions, reproducible
 * [ ] Define a standard audit report format.
 * [ ] Add sample backtest and live-operation records using synthetic data.
 * [ ] Add regression checks for risk calculations.
+* [x] Document the Codex-assisted maintenance workflow and manual verification boundaries.
 * [ ] Add release verification procedures.
 
 ## Phase 5 — Community and maintenance
@@ -46,6 +47,7 @@ The project focuses on operational safety, transparent assumptions, reproducible
 * [x] Add pull request templates.
 * [ ] Collect feedback from MQL5 and MT5 users.
 * [ ] Improve English and Japanese documentation.
+* [x] Add a basic security reporting policy.
 * [ ] Maintain a public changelog for user-visible changes.
 
 ## Non-goals
