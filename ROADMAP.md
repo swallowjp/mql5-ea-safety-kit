@@ -42,7 +42,7 @@ The project focuses on operational safety, transparent assumptions, reproducible
 ## Phase 5 — Community and maintenance
 
 * [x] Prepare the first public release documentation package for human review.
-* [ ] Publish the first tagged GitHub Release manually after review.
+* [x] Publish the first tagged GitHub Release manually after review.
 * [x] Add issue templates.
 * [x] Add pull request templates.
 * [ ] Collect feedback from MQL5 and MT5 users.
