@@ -6,7 +6,7 @@ This repository provides reusable MQL5/MT5 safety and audit helpers for safer Ex
 
 The diagnostic scripts are designed for deterministic safety checks and log output only. They do not place, modify, or close real or simulated orders.
 
-For the first public release package, see [`RELEASE_NOTES.md`](RELEASE_NOTES.md).
+The first published GitHub Release is [`v0.1.0`](https://github.com/swallowjp/mql5-ea-safety-kit/releases/tag/v0.1.0). For repository release notes, see [`RELEASE_NOTES.md`](RELEASE_NOTES.md).
 
 Maintenance and reporting documents:
 

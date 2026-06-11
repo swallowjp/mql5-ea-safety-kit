@@ -1,8 +1,8 @@
 # Release notes — v0.1.0
 
-`v0.1.0` is the first public-release preparation package for `mql5-ea-safety-kit`.
+`v0.1.0` is the first published public release of `mql5-ea-safety-kit`.
 
-The release is intended for human review before a GitHub Release is created manually. It packages the current safety-only MQL5 components, deterministic diagnostic scripts, and project documentation without adding trading strategy logic or changing MQL5 runtime behavior.
+The GitHub Release has been published after human review. It packages the current safety-only MQL5 components, deterministic diagnostic scripts, and project documentation without adding trading strategy logic or changing MQL5 runtime behavior.
 
 ## Project purpose
 
@@ -30,11 +30,11 @@ Both diagnostic scripts are safety-check scripts only. They do not place, modify
 
 ## Documentation included
 
-`v0.1.0` release preparation includes:
+`v0.1.0` includes:
 
 * `README.md` with project scope, module behavior, calculation assumptions, and diagnostic-script usage.
 * `CHANGELOG.md` with release-oriented `v0.1.0` notes.
-* `ROADMAP.md` with first public release preparation marked complete.
+* `ROADMAP.md` with first public release publication marked complete.
 * `CONTRIBUTING.md` with safety and verification expectations for contributors.
 * `AGENTS.md` with repository-specific safety, documentation, and verification instructions.
 * `.github/` issue and pull request templates for structured maintenance records.
@@ -44,7 +44,7 @@ Both diagnostic scripts are safety-check scripts only. They do not place, modify
 
 The repository contains documentation for manual MetaEditor and MT5 checks and deterministic diagnostic scripts intended to be compiled and run in a user's own MetaTrader 5 environment.
 
-No new MQL5 runtime behavior was added for this release-preparation change. This release note does not claim third-party adoption, production deployment, user counts, stars, or universal broker compatibility.
+No new MQL5 runtime behavior was added by publishing this release. This release note does not claim third-party adoption, production deployment, user counts, stars, or universal broker compatibility.
 
 ## Limitations
 

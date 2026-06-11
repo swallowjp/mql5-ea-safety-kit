@@ -15,14 +15,15 @@ The format is based on Keep a Changelog, and this project intends to use semanti
 ### Changed
 
 * Marked maintenance workflow documentation complete in `ROADMAP.md`.
+* Reconciled release documentation to state that the `v0.1.0` GitHub Release was published after human review, without changing the existing `v0.1.0` release date.
 
 ## [0.1.0] - 2026-06-07
 
 ### Added
 
-* Added `RELEASE_NOTES.md` for the first public-release preparation package, including project purpose, included modules, diagnostics, manual verification status, limitations, and non-goals.
+* Added `RELEASE_NOTES.md` for the first published public release, including project purpose, included modules, diagnostics, manual verification status, limitations, and non-goals.
 * Clarified the top-level `README.md` scope for reusable MQL5/MT5 safety and audit helpers, including explicit non-goals for trading strategy logic, financial advice, signals, and order operations.
-* Marked first public release preparation complete in `ROADMAP.md` while leaving the actual tagged GitHub Release as a manual follow-up.
+* Marked first public release documentation complete in `ROADMAP.md`.
 * Added `MQL5/Include/DrawdownGuard.mqh` for basic daily and total drawdown evaluation using caller-supplied account-value units without order operations.
 * Added `MQL5/Scripts/TestDrawdownGuard.mq5` with deterministic synthetic drawdown guard diagnostics and hard-coded expected results.
 * Documented DrawdownGuard usage, assumptions, failure behavior, and limitations in `README.md` and the Japanese first-time MT5 setup guide.
@@ -44,4 +45,3 @@ The format is based on Keep a Changelog, and this project intends to use semanti
 * Broker server time, UTC, VPS time, and JST documentation.
 * Backtest-to-live discrepancy checklist.
 * Example safety-only Expert Advisor.
-* A manually created tagged GitHub Release after human review.
