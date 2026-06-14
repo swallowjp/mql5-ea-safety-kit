@@ -54,6 +54,10 @@ The project focuses on operational safety, transparent assumptions, reproducible
 
 This project will not:
 
+## Post-v0.1 maintenance
+
+- Track repository review and validation scope (#18)
+
 * publish proprietary trading strategies
 * promise or imply guaranteed profitability
 * provide financial advice
